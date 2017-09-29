@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title>8周年账单</title>
+  <meta name="format-detection" content="telephone=no">
+  <!-- safari full screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta id="apple-mobile-web-app-title" name="apple-mobile-web-app-title" content="诺诺镑客">
+  <!--build:css css/index.min.css-->
+  <link rel="stylesheet" type="text/css" href="css/component/loading.css">
+  <link rel="stylesheet" type="text/css" href="css/component/toast.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <!--endbuild-->
+  <!--build:css css/odometer.min.css-->
+  <link rel="stylesheet" href="css/odometer.css" />
+  <!--endbuild-->
+  <script type="text/javascript" src="https://m.nonobank.com/nonoutil/js/tongdun.js"></script>
+  <script type="text/javascript" src="https://m.nonobank.com/tingYun/tingyun-rum-nono-activity.js" async></script>
+  <script>
+    //8周年账单:
+    var _czc = _czc || [];
+    _czc.push(["_setAccount", "1262217633"]);
+  </script>
+</head>
+
+<body>
+  <section id="app" class="box-vertical" v-cloak>
+    <swiper id="swiper_vertical" :pagination-visible="true" @slide-change-end="onSlideChangeEnd" style="display:none;">
+      <div class="swiper-slide brow text-right  padding-horizontal bg1">
+        <p class="">
+          <span class="text-border">
+            <i class="text_arrow"></i>
+            {{regTimes.slice(0, 4)}}年{{regTimes.slice(5, 7)}}月{{regTimes.slice(8, 10)}}日
+            <i class="text_arrow text_border_right"></i>
+          </span>
+        </p>
+        <p class="top-10">您选择了诺诺</p>
+        <p class="">成为第 <span id="odometer" class="font-26 num-color odometer">000</span> 位诺米</p>
+        <p class="swiper-footer move-footer1 text-center">人生财富之路 从诺诺开始</p>
+        <i class="icon icon-arrow arrow_01"></i>
+      </div>
+      <div class="swiper-slide brow text-right swiper-slide-two bg2" :class="{'move-swiper-two':MoveSwiperTwo}">
+        <p class="row move move-one">
+          <span class="text-border">
+          <i class="text_arrow"></i>
+          {{firstInvestTimeStr.slice(0, 4)}}年{{firstInvestTimeStr.slice(5, 7)}}月{{firstInvestTimeStr.slice(8, 10)}}日
+          <i class="text_arrow text_border_right"></i>
+        </span>
+        </p>
+        <p class="row row-center move move-two">成功投资了<span class="font-22 num-color">第一笔</span><span class="font-26 num-color">{{billInfo.firstInvestAmt}}</span>元</p>
+        <p class="row row-center move move-three" v-if='+billInfo.investCnt > 1'>
+          <span class="text-border">
+          <i class="text_arrow"></i>
+          {{maxInvestTimeStr.slice(0, 4)}}年{{maxInvestTimeStr.slice(5, 7)}}月{{maxInvestTimeStr.slice(8, 10)}}日
+          <i class="text_arrow text_border_right"></i>
+        </span>
+        </p>
+        <p class="row row-center move move-four" v-if='+billInfo.investCnt > 1'>最<span class="font-22 num-color">土豪</span>的一次投资了<span class="font-26 num-color">{{billInfo.maxInvestAmt}}</span>元</p>
+        <p class="swiper-footer move-footer text-center white">诺诺从此粉上你～</p>
+        <i class="icon icon-arrow arrow_02"></i>
+      </div>
+      <div class="swiper-slide white text-right bg3" :class="{'move-swiper-three':MoveSwiperThree}">
+        <p class="row move move-one">不知不觉</p>
+        <p class="row row-center move move-two top-10">您已在诺诺投资了 <span class="font-26">{{billInfo.investCnt}}</span> 次</p>
+        <p class="row move move-three">累计投资</p>
+        <p class="row row-center move move-four"><span class="font-26">{{billInfo.investAmt}}</span>元</p>
+        <p class="swiper-footer move-footer text-center">为自己点赞 投资小能手</p>
+        <i class="icon icon-arrow arrow_03"></i>
+      </div>
+      <div class="swiper-slide brow text-right bg4" :class="{'move-swiper-four':MoveSwiperfour}">
+        <p class="row row-center move move-one">
+          <span class="text-border">
+          <i class="text_arrow"></i>
+          {{firstCashoutTimeStr.slice(0, 4)}}年{{firstCashoutTimeStr.slice(5, 7)}}月{{firstCashoutTimeStr.slice(8, 10)}}日
+          <i class="text_arrow text_border_right"></i>
+        </span>
+        </p>
+        <p class="row row-center move move-two">{{moreTxt ? '您将拿走自己的':'您拿走了自己的';}}<span class="font-22 num-color">第一笔</span>本金收益</p>
+        <p class="row row-center move move-three">迄今为止</p>
+        <p class="row row-center move move-four" v-if='!billInfo.investEarningAmt'>诺诺共为诺米赚取<span class="font-26 num-color">{{billInfo.investEarningAmt}}</span>元</p>
+        <p class="row row-center move move-four" v-if='+billInfo.investEarningAmt'>诺诺为您赚取<span class="font-26 num-color">{{investEarningAmt}}</span>元</p>
+        <p class="swiper-footer move-footer text-center footer-color">安全的投资 稳稳的幸福</p>
+        <i class="icon icon-arrow arrow_04"></i>
+      </div>
+      <div class="swiper-slide brow text-right bg5" :class="{'move-swiper-five':MoveSwiperfive}">
+        <p class="row row-center move move-one" v-if="billInfo.invitedUserCnt"><span class="font-26 num-color">{{billInfo.invitedUserCnt}}</span>位好友</p>
+        <p class="row row-center move move-one" v-if="!billInfo.invitedUserCnt">已有<span class="font-26 num-color">{{billInfo.allInvitedUserCnt}}</span>位好友</p>
+        <p class="row row-center move move-two">{{billInfo.invitedUserCnt ? '在您的感召下来到诺诺':'通过镑客大使加入诺诺';}}</p>
+        <p class="row row-center move move-three" v-if="+billInfo.invitedEarningsAmt >= 10">仅现金返现您就获得<span class="font-26 num-color">{{billInfo.invitedEarningsAmt}}</span>元</p>
+        <p class="row row-center move move-three" v-if="+billInfo.invitedEarningsAmt <= 10">邀好友，享返利，一起开心一起赚</p>
+        <p class="swiper-footer move-footer text-center footer-color">好友成团 收益登峰</p>
+        <i class="icon icon-arrow arrow_05"></i>
+      </div>
+      <div class="swiper-slide swiper-bill brow bg6" :class="{'move-swiper-bill':MoveSwiperBill}">
+        <p class="title moveTitle"><img src="images/title.png" alt=""></p>
+        <div class="row moveTimeOne movebill">
+          <p class="col col-25 info">2009年6月</p>
+          <p class="col info">上海诺诺信息技术有限公司成立</p>
+        </div>
+        <div class="row moveTimeTwo movebill">
+          <p class="col col-25 info">2012年11月</p>
+          <p class="col info">诺诺获评“最佳投融资服务网络平台”</p>
+        </div>
+        <div class="row moveTimeThree movebill">
+          <p class="col col-25 info">2015年4月</p>
+          <p class="col info">诺诺母公司麦子金服获A轮融资</p>
+        </div>
+        <div class="row moveTimeFour movebill">
+          <p class="col col-25 info">2015年10月</p>
+          <p class="col info">诺诺母公司麦子金服作为66家民族品牌代表，登陆纽约时代广场</p>
+        </div>
+        <div class="row moveTimeFive movebill">
+          <p class="col col-25 info">2016年11月</p>
+          <p class="col info">诺诺母公司麦子金服作为官方合作伙伴亮相世界互联网大会</p>
+        </div>
+        <div class="row moveTimeSix movebill">
+          <p class="col col-25 info">2017年4月</p>
+          <p class="col info">诺诺母公司麦子金服召开B轮融资发布会</p>
+        </div>
+        <div class="row moveTimeSeven movebill">
+          <p class="col col-25 info">2017年6月</p>
+          <p class="col info">诺诺徽商银行存管上线</p>
+        </div>
+        <div class="tip">
+          <p>过去，您的财富有诺诺助力；</p>
+          <p>未来，您愿意与谁携手</p>
+          <p>和诺诺一起结伴而行？</p>
+        </div>
+        <div class="button row">
+          <p class="col col-50 text-center moveShare" @click="share()"><img src="images/share.png" alt=""></p>
+          <p class="col col-50 text-center moveInvest" @click="goInvest()"><img src="images/invest.png" alt=""></p>
+        </div>
+      </div>
+    </swiper>
+    <swiper  :pagination-visible="true" @slide-change-end="onSlideChangeEnd" v-if="hasNoNumInvestCnt">
+      <div class="swiper-slide swiper-no-bill text-right bg7">
+        <img src="images/no_bill.png" alt="">
+        <i class="icon icon-arrow arrow_01"></i>
+      </div>
+      <div class="swiper-slide swiper-bill brow bg6" :class="{'move-swiper-bill':MoveSwiperBill}">
+        <p class="title moveTitle"><img src="images/title.png" alt=""></p>
+        <div class="row moveTimeOne movebill">
+          <p class="col col-25 info">2009年6月</p>
+          <p class="col info">上海诺诺信息技术有限公司成立</p>
+        </div>
+        <div class="row moveTimeTwo movebill">
+          <p class="col col-25 info">2012年11月</p>
+          <p class="col info">诺诺获评“最佳投融资服务网络平台”</p>
+        </div>
+        <div class="row moveTimeThree movebill">
+          <p class="col col-25 info">2015年4月</p>
+          <p class="col info">诺诺母公司麦子金服获A轮融资</p>
+        </div>
+        <div class="row moveTimeFour movebill">
+          <p class="col col-25 info">2015年10月</p>
+          <p class="col info">诺诺母公司麦子金服作为66家民族品牌代表，登陆纽约时代广场</p>
+        </div>
+        <div class="row moveTimeFive movebill">
+          <p class="col col-25 info">2016年11月</p>
+          <p class="col info">诺诺母公司麦子金服作为官方合作伙伴亮相世界互联网大会</p>
+        </div>
+        <div class="row moveTimeSix movebill">
+          <p class="col col-25 info">2017年4月</p>
+          <p class="col info">诺诺母公司麦子金服召开B轮融资发布会</p>
+        </div>
+        <div class="row moveTimeSeven movebill">
+          <p class="col col-25 info">2017年6月</p>
+          <p class="col info">诺诺徽商银行存管上线</p>
+        </div>
+        <div class="tip">
+          <p>过去，您的财富有诺诺助力；</p>
+          <p>未来，您愿意与谁携手</p>
+          <p>和诺诺一起结伴而行？</p>
+        </div>
+
+        <div class="button row">
+          <p class="col col-50 text-center moveShare" @click="share()"><img src="images/share.png" alt=""></p>
+          <p class="col col-50 text-center moveInvest" @click="goInvest()"><img src="images/invest.png" alt=""></p>
+        </div>
+      </div>
+    </swiper>
+    <loading :show="isLoading"></loading>
+    <div id="toastr" class="row row-center" :class="{active: toastrInfo}">
+      <p>{{toastrInfo}}</p>
+    </div>
+    
+    <div id="shareMask" class="" v-show="showShareMask" @click="close()">
+      <div class="inner">
+        <img src="images/shareMask.png" alt="">
+      </div>
+    </div>
+
+    <div id="toastMask" class="row row-center" v-show="toastMask">
+      <div class="inner text-center">
+        您还未登录，无法生成账单
+        <br>请登录后再试
+      </div>
+    </div>
+  </section >
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js "></script>
+  <!-- build:js js/vendor.js -->
+  <!-- bower:js -->
+  <script src="/bower_components/js-md5/src/md5.js"></script>
+  <script src="/bower_components/es6-promise/es6-promise.auto.min.js"></script>
+  <script src="/bower_components/axios/dist/axios.js"></script>
+  <!-- endbower -->
+
+  <!--endbuild-->
+  <!--build:js js/util.min.js -->
+  <script src="js/vue1.min.js"></script>
+  <script src="js/common/event.js"></script>
+  <script src="js/common/bridge.js"></script>
+  <script src="js/common/utils.js"></script>
+  <script src="js/common/qs.js"></script>
+  <script src="js/common/encryptSign.js"></script>
+  <script src="js/common/http.js"></script>
+  <!--endbuild-->
+  <!--build:js js/main.min.js-->
+  <script src="js/vue-swiper.js"></script>
+  <script src="js/odometer.js"></script>
+  <script src="js/component/loading.js"></script>
+  <script src="js/component/toast.js"></script>
+  <script src="js/index.js"></script>
+  <!--endbuild-->
+  <script>
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_1262217633'%3E%3C/span%3E%3Cscript async src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1262217633' %3E%3C/script%3E"));
+  </script>
+</body>
+
+</html>

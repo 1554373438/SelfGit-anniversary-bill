@@ -1,0 +1,69 @@
+// @-webkit-keyframes toastActive {
+//   0% {
+//     opacity: 0;
+//   }
+//   50% {
+//     opacity: 1;
+//   }
+//   100% {
+//     opacity: 0;
+//   }
+// }
+
+// @keyframes toastActive {
+//   0% {
+//     opacity: 0;
+//   }
+//   50% {
+//     opacity: 1;
+//   }
+//   100% {
+//     opacity: 0;
+//   }
+// }
+// .toast{
+//   // display: none;
+//   position: absolute;
+//   width: 70%;
+//   top: 50%;
+//   left: 15%;
+//   font-size: 16px;
+//   text-align: center;
+//   background-color: rgba(0,0,0,0.6);
+//   color: #fff;
+//   line-height: 1.2;
+//   padding: 16px 5px;
+//   border-radius: 10px;
+//   z-index: 2;
+//   -webkit-animation: toastActive 2s ease both;
+//   animation: toastActive 2s ease both;
+//   -webkit-animation-iteration-count: 1;
+//   animation-iteration-count: 1;
+// }
+@charset "utf-8";
+@import "../common/_mixins",
+"../common/_variables";
+#toastr {
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  background: transparent;
+  @include justify-content(center);
+  p {
+    padding: 10px;
+    color: #fff;
+    background: rgba(0,0,0,.6);
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+  }
+  &.active {
+    height: 100%;
+    opacity: 1;
+  }
+}

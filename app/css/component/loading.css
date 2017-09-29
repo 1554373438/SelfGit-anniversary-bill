@@ -1,0 +1,26 @@
+#loading {
+  z-index: 4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+#loading .inner {
+  text-align: center;
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  background: rgba(0, 0, 0, 0.64);
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+#loading .inner img {
+  display: inline-block;
+  vertical-align: middle;
+  width: 32px;
+}

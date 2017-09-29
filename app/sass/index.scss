@@ -1,0 +1,601 @@
+@charset "UTF-8";
+@import "common/base";
+$img-path: '../images/';
+$body-bg-color: #eeedf2;
+html,
+body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 62.5%;
+  color: #4d4d4d;
+  box-sizing: border-box;
+  // background-color: $body-bg-color;
+  background: url(#{$img-path}1.png) left top no-repeat;
+  background-size: 100% 100%;
+  overflow-x: hidden;
+}
+#app{
+  position: relative;
+  height:100%;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.row + .row {
+  margin-top: 0;
+}
+
+p {
+  font-size: 18px;
+}
+
+.top-10{
+  padding-top: 10px;
+}
+
+.white {
+  color: #fff;
+}
+
+.brow {
+  color: #6c4618;
+}
+
+.num-color {
+  color: #382104;
+}
+
+.footer-color {
+  color: #b4742f;
+}
+
+.font-22 {
+  font-size: 22px;
+}
+
+.font-26 {
+  font-size: 26px;
+}
+
+.bolder {
+  font-weight: bolder;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.flex-box {
+  @include display-flex();
+  // @include flex-direction(row);
+}
+
+.flex-box-coloum {
+  @include display-flex();
+  @include flex-direction(coloum);
+}
+
+.swiper {
+  height: 100%;
+}
+
+.swiper-wrap .swiper-slide {
+  position: relative;
+  padding-top: 20px;
+  .move {
+    position: absolute;
+    padding: 0 15px 0 0;
+    top: -60px;
+    @include justify-content(flex-end);
+  }
+}
+
+// .keyboard-on .swiper-wrap .swiper-slide {
+//   display: none;
+// }
+// .keyboard-on .swiper-wrap .swiper-slide:last-child {
+//   display: block;
+// }
+// @for $i from 1 through 6 {
+//   .swiper-slide:nth-child(#{$i}) {
+//     background: url(#{$img-path}#{$i}.png) left top no-repeat;
+//     background-size: cover;
+//   }
+// }
+.swiper-slide.bg1 {
+  background: url(#{$img-path}1.png) left top no-repeat;
+  background-size: 100% 100%;
+}
+
+.swiper-slide.bg2 {
+  background: url(#{$img-path}2.png) left top no-repeat;
+  background-size: 100% 100%;
+}
+
+.swiper-slide.bg3 {
+  background: url(#{$img-path}3.png) left top no-repeat;
+  background-size: 100% 100%;
+}
+
+.swiper-slide.bg4 {
+  background: url(#{$img-path}4.png) left top no-repeat;
+  background-size: 100% 100%;
+}
+
+.swiper-slide.bg5 {
+  background: url(#{$img-path}5.png) left top no-repeat;
+  background-size: 100% 100%;
+}
+
+.swiper-slide.bg6 {
+  background: url(#{$img-path}6.png) left top no-repeat;
+  background-size: 100% 100%;
+}
+
+.swiper-slide.bg7 {
+  background: url(#{$img-path}7.png) left top no-repeat;
+  background-size: 100% 100%;
+}
+
+.box-vertical {
+  .swiper {
+    .swiper-pagination {
+      .swiper-pagination-bullet {
+        width: 6px;
+        height: 6px;
+        opacity: 0.1;
+      }
+      .swiper-pagination-bullet.active {
+        background: #fff;
+      }
+    }
+  }
+}
+
+.text-border {
+  position: relative;
+  margin-right: 10px;
+  display: inline-block;
+  min-width: 100px;
+  text-align: center;
+  .text_arrow {
+    position: absolute;
+    width: 7px;
+    height: 12px;
+    background: url(#{$img-path}text_border.png) no-repeat;
+    background-size: 100% 100%;
+    &:first-child {
+      top: -2px;
+      left: -10px;
+    }
+    &:last-child {
+      transform: rotate(180deg);
+      bottom: -2px;
+      right: -10px;
+    }
+  }
+}
+
+.swiper-footer {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 45px;
+  font-size: 16px;
+  opacity:0;
+  &.move-footer1 {
+    animation: swiperFooterMove 4s ease both;
+  }
+}
+
+@keyframes swiperFooterMove {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.icon-arrow {
+  position: absolute;
+  width: 18px;
+  height: 25px;
+  bottom: 15px;
+  left: 50%;
+  margin-left: -9px;
+  animation: move 2s ease infinite;
+  &.arrow_01 {
+    background: url(#{$img-path}arrow_01.png) center center no-repeat;
+    background-size: 100% 100%;
+  }
+  &.arrow_02 {
+    background: url(#{$img-path}arrow_02.png) center center no-repeat;
+    background-size: 100% 100%;
+  }
+  &.arrow_03 {
+    background: url(#{$img-path}arrow_03.png) center center no-repeat;
+    background-size: 100% 100%;
+  }
+  &.arrow_04 {
+    background: url(#{$img-path}arrow_04.png) center center no-repeat;
+    background-size: 100% 100%;
+  }
+  &.arrow_05 {
+    background: url(#{$img-path}arrow_05.png) center center no-repeat;
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: .4;
+  }
+  50% {
+    transform: translate3d(0, -5px, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 0px, 0);
+    opacity: .4;
+  }
+}
+
+.swiper-wrap .move-swiper-two {
+  .move-one {
+    animation: moveone 1s ease both;
+  }
+  .move-two {
+    animation: moveSwiperTwoTwo 1s ease both;
+    @keyframes moveSwiperTwoTwo {
+      0% {
+        opacity: .2;
+      }
+      50% {
+        opacity: .5;
+      }
+      100% {
+        top: 50px;
+        opacity: 1;
+      }
+    }
+  }
+  .move-three {
+    animation: movethree 1s ease 0.5s both;
+  }
+  .move-four {
+    animation: moveSwiperFourFour 1s ease 0.5s both;
+    @keyframes moveSwiperFourFour {
+      0% {
+        opacity: .2;
+      }
+      50% {
+        opacity: .5;
+      }
+      100% {
+        top: 115px;
+        opacity: 1;
+      }
+    }
+  }
+  .move-footer {
+    animation: swiperFooterMove 4s ease both;
+  }
+}
+
+.swiper-wrap .move-swiper-three {
+  .move-one {
+    animation: moveone 1s ease both;
+  }
+  .move-two {
+    animation: movetwo 1s ease both;
+  }
+  .move-three {
+    animation: movethree 1s ease 0.5s both;
+  }
+  .move-four {
+    animation: movefour 1s ease 0.5s both;
+  }
+  .move-footer {
+    animation: swiperFooterMove 4s ease both;
+  }
+}
+
+.swiper-wrap .move-swiper-four {
+  .move-one {
+    animation: moveone 1s ease both;
+  }
+  .move-two {
+    animation: moveSwiperFourTwo 1s ease both;
+  }
+  @keyframes moveSwiperFourTwo {
+    0% {
+      opacity: .2;
+    }
+    50% {
+      opacity: .5;
+    }
+    100% {
+      top: 50px;
+      opacity: 1;
+    }
+  }
+  .move-three {
+    animation: movethree 1s ease 0.5s both;
+  }
+  .move-four {
+    animation: movefour 1s ease 0.5s both;
+  }
+  .move-footer {
+    animation: swiperFooterMove 4s ease both;
+  }
+}
+
+.swiper-wrap .move-swiper-five {
+  .move-one {
+    animation: moveone 1s ease both;
+  }
+  .move-two {
+    animation: moveSwiperFiveTwo 1s ease both;
+  }
+  @keyframes moveSwiperFiveTwo {
+    0% {
+      opacity: .2;
+    }
+    50% {
+      opacity: .5;
+    }
+    100% {
+      top: 60px;
+      opacity: 1;
+    }
+  }
+  .move-three {
+    animation: moveSwiperFiveThree 1s ease 0.5s both;
+  }
+  @keyframes moveSwiperFiveThree {
+    0% {
+      opacity: .2;
+    }
+    50% {
+      opacity: .5;
+    }
+    100% {
+      top: 85px;
+      opacity: 1;
+    }
+  }
+  .move-footer {
+    animation: swiperFooterMove 4s ease both;
+  }
+}
+
+@keyframes moveone {
+  0% {
+    opacity: .2;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    top: 20px;
+    opacity: 1;
+  }
+}
+
+@keyframes movetwo {
+  0% {
+    opacity: .2;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    top: 40px;
+    opacity: 1;
+  }
+}
+
+@keyframes movethree {
+  0% {
+    opacity: .2;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    top: 85px;
+    opacity: 1;
+  }
+}
+
+@keyframes movefour {
+  0% {
+    opacity: .2;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    top: 105px;
+    opacity: 1;
+  }
+}
+
+.swiper-no-bill {
+  padding-top: 100px;
+  img {
+    margin-top: 100px;
+    width: 100%;
+    animation: moveTip 3s ease both;
+  }
+}
+.swiper-bill {
+  .title {
+    height: 40px;
+    padding:0 20px;
+    // opacity:0;
+    img {
+      width: 100%;
+    }
+  }
+  .movebill {
+    padding: 0 15px 10px;
+    opacity:0;
+    .info {
+      line-height: 20px;
+      font-size: 12px;
+      color: #432015;
+      padding: 0;
+      width: 75%;
+      text-align: justify;
+      // opacity:0;
+    }
+  }
+  .tip {
+    opacity:0;
+    margin-top: 50px;
+    font-size: 16px;
+    padding: 0;
+    text-align: center;
+  }
+  .button {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    img {
+      width: 110px;
+    }
+  }
+  &.move-swiper-bill {
+    .moveTimeOne {
+      animation: moveTimeOne 1s linear both;
+    }
+    @keyframes moveTimeOne {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: .5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    .moveTimeTwo {
+      animation: moveTimeOne 1s linear 0.4s both;
+    }
+    .moveTimeThree {
+      animation: moveTimeOne 1s linear 0.8s both;
+    }
+    .moveTimeFour {
+      animation: moveTimeOne 1s linear 1.2s both;
+    }
+    .moveTimeFive {
+      animation: moveTimeOne 1s linear 1.6s both;
+    }
+    .moveTimeSix {
+      animation: moveTimeOne 1s linear 2.0s both;
+    }
+    .moveTimeSeven {
+      animation: moveTimeOne 1s linear 2.4s both;
+    }
+    .tip {
+      animation: moveTip 2s ease 3.5s both;
+    }
+    @keyframes moveTip {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: .5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+#loading {
+  z-index: 4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  // background: rgba(0, 0, 0, .5);
+  background: transparent;
+  .inner {
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    background: rgba(0, 0, 0, .64);
+    border-radius: 8px;
+    margin: 0 auto;
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      width: 64px;
+    }
+  }
+}
+
+#shareMask {
+  z-index: 6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: rgba(0, 0, 0, .5);
+  .inner {
+    margin: 0 auto;
+    padding-top: 10px;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+#toastMask {
+  z-index: 6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: rgba(0, 0, 0, .5);
+  .inner {
+    margin: 0 auto;
+    padding-top: 10px;
+    font-size: 24px;
+    color:#fff;
+  }
+}
+
+@font-face {
+  font-family: myfont;
+  src: url('../images/myfont.ttf');
+}
+
+p,
+span,
+div {
+  font-family: myfont;
+}
