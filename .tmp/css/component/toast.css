@@ -1,0 +1,1 @@
+#toastr{z-index:5;position:absolute;top:0;left:0;width:100%;height:0;opacity:0;overflow:hidden;background:transparent;-webkit-box-pack:center;-ms-flex-pack:center;-moz-justify-content:center;justify-content:center}#toastr p{padding:10px;color:#fff;background:rgba(0,0,0,0.6);border-radius:4px;text-align:center;font-size:14px}#toastr.active{height:100%;opacity:1}
